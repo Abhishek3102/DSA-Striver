@@ -41,6 +41,7 @@ void get_div()
     vector<int> ls;
 
     // for (int i = 1; i <= sqrt(n); i++) here since sqrt itself is a function and every time it gets called it will take some time of its own too, to execute
+    // here, t.c. is O(sqrt(n))
     for (int i = 1; i * i <= n; i++) // another way for using sqrt
     {
         if (n % i == 0)
@@ -52,7 +53,11 @@ void get_div()
             }
         }
     }
+
+    // here, t.c. is O(no of factors + log(no of factors))
     sort(ls.begin(), ls.end());
+
+    // O(number of factors)
     for (auto it : ls)
         cout << it << " ";
 }
