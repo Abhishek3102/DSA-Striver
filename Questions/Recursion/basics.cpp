@@ -96,6 +96,15 @@ int fibo(int n)
     }
 }
 
+int factorialN(int n)
+{
+    if (n == 0 || n == 1)
+    {
+        return 1;
+    }
+    return n * factorialN(n - 1);
+}
+
 void print(int i, int n)
 {
     // Relying on the function call stack to stop recursion
@@ -119,9 +128,7 @@ int main()
 
     // hisSumToN(6, 0);
 
-    // cout << funcSum1toN(6);
-    // cout << fibo(7);
-    print(1, 5);
+    cout << factorialN(5);
     return 0;
 }
 
