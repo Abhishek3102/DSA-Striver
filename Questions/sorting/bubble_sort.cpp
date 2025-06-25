@@ -5,7 +5,7 @@ void bubb_sort(int arr[], int n)
 {
     for (int i = n - 1; i >= 1; i--)
     {
-        for (int j = 0; j < i - 1; j++) // here j is going till i-1 bcoz if we went till i instead of i-1
+        for (int j = 0; j <= i - 1; j++) // here j is going till i-1 bcoz if we went till i instead of i-1
         // then last element would have no next element to compare itself with
         // and it would have given a runtime error bcoz we are trying to access an index which is not present
         {
