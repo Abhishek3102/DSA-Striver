@@ -738,3 +738,235 @@ This performs all needed comparisons:
 - This leads to **elements staying in the wrong place** and the array remaining **unsorted** in many cases.
 
 Let me know if you want a visual comparison chart or animation-style steps for this example!
+
+---
+
+## Optimized Bubble Sort
+
+You're observing different outputs for `didSwap` because of **where** the variable `didSwap` is declared in your bubble sort loop. Let's break it down:
+
+### Current (uncommented) code:
+
+```cpp
+void bubb_sort(int arr[], int n)
+{
+    int didSwap = 0; // declared once, outside the outer loop
+    for (int i = n - 1; i >= 1; i--)
+    {
+        for (int j = 0; j <= i - 1; j++)
+        {
+            if (arr[j] > arr[j + 1])
+            {
+                int temp = arr[j + 1];
+                arr[j + 1] = arr[j];
+                arr[j] = temp;
+                didSwap = 1;
+            }
+        }
+        cout << didSwap << endl;
+        if (didSwap == 0)
+        {
+            break;
+        }
+    }
+}
+```
+
+### What's wrong here?
+
+Since `didSwap` is declared **outside** the outer loop and never reset inside the loop, once it's set to `1` (i.e. a swap happens in the first pass), it **stays 1 forever**. That's why your output was:
+
+```
+1
+1
+1
+1
+1
+```
+
+Even when no swaps happened in later iterations, `didSwap` was already `1`, so the early exit condition never triggered.
+
+---
+
+### Correct version (commented out in your code):
+
+```cpp
+void bubb_sort(int arr[], int n)
+{
+    for (int i = n - 1; i >= 1; i--)
+    {
+        int didSwap = 0; // declared and reset at the start of each outer loop iteration
+        for (int j = 0; j <= i - 1; j++)
+        {
+            if (arr[j] > arr[j + 1])
+            {
+                int temp = arr[j + 1];
+                arr[j + 1] = arr[j];
+                arr[j] = temp;
+                didSwap = 1;
+            }
+        }
+        cout << didSwap << endl;
+        if (didSwap == 0)
+        {
+            break;
+        }
+    }
+}
+```
+
+### Why this works:
+
+Here, `didSwap` is reset to `0` at the start of each outer loop iteration. That means:
+
+- If any swap occurs during this pass, it becomes `1`.
+- If **no swap occurs**, it remains `0`, and the loop breaks early.
+- This is the **optimized version** of Bubble Sort (best case O(N)).
+
+With your array `46 13 24 9 20 52`, the correct output (optimized) should be:
+
+```
+1
+1
+1
+1
+0
+```
+
+(meaning: 4 passes with swaps, then 1 pass with no swaps → done!)
+
+---
+
+### ✅ Fix:
+
+Move `int didSwap = 0;` **inside** the outer `for` loop.
+
+Let me know if you'd like a step-by-step trace of this array through Bubble Sort!
+
+---
+
+Perfect — that output confirms your understanding is now correct and the optimized Bubble Sort logic is working exactly as intended.
+
+Here's what your program is doing step-by-step for the input `46 13 24 9 20 52`:
+
+---
+
+### Initial Array:
+
+`[46, 13, 24, 9, 20, 52]`
+
+### Pass 1:
+
+- 46 > 13 → swap → `[13, 46, 24, 9, 20, 52]`
+- 46 > 24 → swap → `[13, 24, 46, 9, 20, 52]`
+- 46 > 9 → swap → `[13, 24, 9, 46, 20, 52]`
+- 46 > 20 → swap → `[13, 24, 9, 20, 46, 52]`
+- 46 < 52 → no swap
+  ✅ `didSwap = 1` → print `1`
+
+---
+
+### Pass 2:
+
+- 13 < 24 → no swap
+- 24 > 9 → swap → `[13, 9, 24, 20, 46, 52]`
+- 24 > 20 → swap → `[13, 9, 20, 24, 46, 52]`
+- 24 < 46 → no swap
+  ✅ `didSwap = 1` → print `1`
+
+---
+
+### Pass 3:
+
+- 13 > 9 → swap → `[9, 13, 20, 24, 46, 52]`
+- 13 < 20 → no swap
+- 20 < 24 → no swap
+  ✅ `didSwap = 1` → print `1`
+
+---
+
+### Pass 4:
+
+- 9 < 13 → no swap
+- 13 < 20 → no swap
+  ✅ `didSwap = 0` → print `0` and **exit early**
+
+---
+
+### Final Sorted Array:
+
+`[9, 13, 20, 24, 46, 52]`
+
+---
+
+### Output Recap:
+
+```
+1
+1
+1
+0
+9 13 20 24 46 52
+```
+
+💡 This matches the optimized Bubble Sort behavior:
+
+- **Best case:** O(N) when array is already sorted
+- **Average/Worst case:** O(N²)
+
+You're on the right track — great job identifying and correcting the issue with `didSwap` placement!
+
+---
+
+Good catch — let’s clear that up.
+
+You're absolutely right to ask: if your correct output was:
+
+```
+1
+1
+1
+0
+```
+
+Why did I previously say:
+
+```
+1
+1
+1
+1
+0
+```
+
+### Here's what happened:
+
+When I gave that output (`1 1 1 1 0`), I **mistakenly assumed** the number of passes was equal to `n - 1` for an array of size 6 (i.e., 5 passes), **without actually simulating** the optimized version of your input.
+
+That assumption would be true for the **unoptimized** Bubble Sort, but not for the optimized one where early termination is used (`didSwap == 0` breaks the loop).
+
+---
+
+### In your case (input: `46 13 24 9 20 52`), the correct number of passes was:
+
+- Pass 1 → swaps happen → `didSwap = 1`
+- Pass 2 → swaps happen → `didSwap = 1`
+- Pass 3 → swaps happen → `didSwap = 1`
+- Pass 4 → no swaps → `didSwap = 0` → loop ends early
+
+✅ So only **4 passes**, and your output is correctly:
+
+```
+1
+1
+1
+0
+```
+
+---
+
+### Summary:
+
+- My previous output (`1 1 1 1 0`) was wrong because I didn’t simulate carefully.
+- Your output is correct based on your logic and the actual array behavior.
+- Thank you for pointing it out — that’s the kind of sharp debugging mindset that's perfect for mastering DSA!
