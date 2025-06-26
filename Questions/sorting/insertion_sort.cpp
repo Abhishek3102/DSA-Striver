@@ -93,4 +93,99 @@ Final Output:
 0
 9 13 20 24 46 52
 
+----------------------------------------------------------------------------------
+
+Great! Let's do both:
+
+---
+
+## ✅ 1. **Count Comparisons (Instead of Swaps)**
+
+In **insertion sort**, a **comparison** happens every time we check `arr[j - 1] > key`.
+
+So for each element, we can count how many times it compares itself to prior elements — this gives you a better idea of time complexity rather than just physical swaps.
+
+---
+
+## ✅ 2. **Use Real Insertion-style Shifting (No Swaps)**
+
+In actual insertion sort, instead of swapping on every comparison (which is inefficient), we:
+
+1. Store the `key` (current element).
+2. Shift all larger elements one position ahead.
+3. Insert the `key` in the correct spot.
+
+---
+
+## 🔧 Modified Code (Both Improvements)
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+void insertion_sort(int arr[], int n)
+{
+    for (int i = 1; i < n; i++) // Start from 1, since 0th element is trivially sorted
+    {
+        int key = arr[i];
+        int j = i - 1;
+        int comparisons = 0;
+
+        // Shift elements greater than key to the right
+        while (j >= 0 && arr[j] > key)
+        {
+            arr[j + 1] = arr[j];
+            j--;
+            comparisons++;
+        }
+
+        // One final comparison that failed (optional: count it)
+        if (j >= 0) comparisons++;
+
+        arr[j + 1] = key;
+
+        cout << "Pass " << i << ": comparisons = " << comparisons << endl;
+    }
+}
+```
+
+---
+
+## 🔎 Input:
+
+```plaintext
+6
+46 13 24 9 20 52
+```
+
+## ✅ Output (for comparisons):
+
+```
+Pass 1: comparisons = 1
+Pass 2: comparisons = 2
+Pass 3: comparisons = 3
+Pass 4: comparisons = 3
+Pass 5: comparisons = 1
+```
+
+---
+
+## 🔁 Final Sorted Array:
+
+```plaintext
+9 13 20 24 46 52
+```
+
+---
+
+## 🧠 Key Takeaways:
+
+* Comparisons better reflect algorithm's performance.
+* Actual insertion sort uses **shifting**, not repeated swapping — more efficient.
+* Total comparisons here: `1 + 2 + 3 + 3 + 1 = 10` — not bad for 6 elements.
+
+---
+
+Would you like to visualize this as a step-by-step table or compare it with selection/merge sort side-by-side?
+
 */
