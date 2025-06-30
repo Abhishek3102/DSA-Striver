@@ -1,25 +1,63 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void left_rot_by_d(int arr[], int n)
+void left_rot_by_d(int arr[], int n, int d)
 {
-    // t.c. is O(N) coz for loop running till n-1, and s.c. is O(1) bcoz all operations are happening in given array only
-    int temp = arr[0];
-    for (int i = 0; i < n - 1; i++)
+    d = d % n;
+    int temp[d];
+
+    // O(d)
+    for (int i = 0; i < d; i++)
     {
-        arr[i] = arr[i + 1];
+        temp[i] = arr[i];
     }
-    arr[n - 1] = temp;
-    // return arr[n];
+
+    // O(n-d)
+    for (int i = d; i < n; i++)
+    {
+        arr[i - d] = arr[i];
+    }
+
+    // O(d)
+    for (int i = n - d; i < n; i++)
+    {
+        arr[i] = temp[i - (n - d)];
+    }
+
+    // Total t.c. is : O(d) + O(n-d) + O(d) = O(n+d)
+    // extra space used is O(d) which is due to temp array
+    // overall s.c is O(n) + O(d)
 }
 
-void print_array(int arr[], int n)
+void left_rot_by_d_optimal(int arr[], int n, int d)
 {
-    for (int i = 0; i < n; i++)
-    {
-        cout << arr[i] << " ";
+    // here we remove the extra space used due to temp array
+    // we perform following reverses, to avoid making use of temp array
+
+    // reverse (a, a+d)  |   O(d)
+    // reverse(a+d, a+n) |   O(n-d)
+    // reverse(a, a+n)   |   O(n)
+    // so total t.c. here is : O(2n)
+    // but extra space used is O(1) and overall s.c. is O(n) for n sized array
+
+    /*
+    Manual reverse function :
+    void reverse(int arr[], int start, int end){
+        while(start <= end){
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
     }
-    cout << endl;
+    }
+    */
+
+    // Original array : [1, 8, 6, 3, 2, 5, 9]
+    reverse(arr, arr + d);     // [6, 8, 1, 3, 2, 5, 9]
+    reverse(arr + d, arr + n); // [6, 8, 1, 9, 5, 2, 3]
+    reverse(arr, arr + n);     // [3, 2, 5, 9, 1, 8, 6]
+    d = d % n;
 }
 
 int main()
@@ -31,7 +69,13 @@ int main()
     {
         cin >> arr[i];
     }
-    left_rot_by_d(arr, n);
-    print_array(arr, n);
+
+    int d;
+    cin >> d;
+    left_rot_by_d_optimal(arr, n, d);
+    for (int i = 0; i < n; i++)
+    {
+        cout << arr[i] << " ";
+    }
     return 0;
 }
