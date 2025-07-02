@@ -3,6 +3,7 @@ using namespace std;
 
 vector<int> findArrayIntersection(vector<int> &A, int n, vector<int> &B, int m)
 {
+    // tc : O(N1 * N2) & sc : O(N2)
     vector<int> ans;
     int vis[m] = {0};
     for (int i = 0; i < n; i++)
@@ -22,9 +23,11 @@ vector<int> findArrayIntersection(vector<int> &A, int n, vector<int> &B, int m)
     return ans;
 }
 
-// optimal me ek hi intersection mil raha hai sab nahi
 vector<int> findArrayIntersectionOptimal(vector<int> &A, int n, vector<int> &B, int m)
 {
+    // tc : O(N1+N2)
+    // sc : O(1)
+
     int i = 0, j = 0;
     vector<int> ans;
     while (i < n && j < m)
@@ -50,26 +53,22 @@ vector<int> findArrayIntersectionOptimal(vector<int> &A, int n, vector<int> &B, 
 int main()
 {
     int n, m;
-    cin >> n >> m; // Input size of two arrays
+    cin >> n >> m;
 
-    vector<int> A(n), B(m); // Declare vectors A and B
+    vector<int> A(n), B(m);
 
-    // Input elements for array A
     for (int i = 0; i < n; i++)
     {
         cin >> A[i];
     }
 
-    // Input elements for array B
     for (int i = 0; i < m; i++)
     {
         cin >> B[i];
     }
 
-    // Get the intersection of the two arrays
     vector<int> result = findArrayIntersectionOptimal(A, n, B, m);
 
-    // Print the intersection result
     for (int i : result)
     {
         cout << i << " ";
