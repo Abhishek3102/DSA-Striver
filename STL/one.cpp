@@ -105,10 +105,10 @@ void explainDeque()
     dq.push_back(1);    //{1}
     dq.emplace_back(2); //{1,2}
     dq.push_front(3);   // {3,1,2}
-    dq.emplace_back(4); //{4,3,1,2}
+    dq.emplace_back(4); //{3,1,2,4}
 
-    dq.pop_back();  // {4,3,1}
-    dq.pop_front(); // {3,1}
+    dq.pop_back();  // {3,1,2}
+    dq.pop_front(); // {1,2}
 
     dq.back();
     dq.front();
@@ -167,11 +167,11 @@ void explainPQ()
     priority_queue<int> pq;
     pq.push(5);    // {5}
     pq.push(2);    // {5,2}
-    pq.push(8);    // {5,2,8}
-    pq.emplace(9); // {9,5,2,8}
+    pq.push(8);    // {8,5,2}
+    pq.emplace(9); // {9,8,5,2}
 
     cout << pq.top(); // prints 9
-    pq.pop();         // {5,2,8}
+    pq.pop();         // {8,5,2}
 
     // size, swap, empty same as stack
 
@@ -205,12 +205,12 @@ void explainSet()
     auto it = st.find(9); // point to st.end() bcoz value not there in set
 
     //{1,2,4,5}
-    st.erase(5); // erases 5, takes logarithmic time
+    st.erase(5); // erases 5, takes logarithmic time. Finds and erases 5 → O(log n) coz it has to search using binary search
 
     int cnt = st.count(6); // if 6 present then will return 1 else 0
 
-    auto it = st.find(4);
-    st.erase(it); // takes constant time
+    auto it = st.find(4); // O(log n) .find() function uses binary search tree traversal to locate the element.
+    st.erase(it);         // takes constant time.  // Directly erases 4 → O(1) coz position is already known from above line so no need to search
 
     // {1,2,3,4,5}
     auto it1 = st.find(2);
@@ -219,8 +219,8 @@ void explainSet()
 
     // lower_bound() and upper_bound() function work in same way as in vector
 
-    auto it = st.lower_bound(2);
-    auto it = st.upper_bound(3);
+    auto it = st.lower_bound(2); // val >= . the smallest value greater than equal to (num). here -> 2
+    auto it = st.upper_bound(3); // val > . the smallest value greater than (num). here -> 4.
 
     // In set, everything happens in O(log N) time
 }
@@ -266,7 +266,14 @@ void explainMap()
     map<pair<int, int>, int> mpp3;
 
     mpp1[1] = 2; // here 1 is the key and 2 is the value
-    mpp2.emplace(3, 1);
+    // mpp2.emplace(3, {1, 4}); Your call is: mpp2.emplace(3, {1,4}); The compiler sees (int, {...}) where {1,4} is an initializer list.
+    // It cannot deduce how to convert {1,4} to the pair<int,int> parameter needed for the mapped type.
+    mpp2.emplace(3, make_pair(1, 4));
+    for (auto it : mpp2)
+    {
+        cout << it.first << " " << it.second.second << endl; // 3 4
+    }
+
     mpp1.insert({2, 8});
     mpp3[{4, 6}] = 11;
 
@@ -347,7 +354,7 @@ void explainExtra()
     int cnt = __builtin_popcount(num);
     // this will return 3 bcoz 7 : 1 1 1 i.e. 1*2^0 +1*2^1 + 1*2^2
 
-    // if num was was then cnt would have returned 2 bcoz 6 : 1 1 0
+    // if num was 6 then cnt would have returned 2 bcoz 6 : 1 1 0
 
     string s = "123";
 
