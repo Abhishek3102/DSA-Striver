@@ -1,5 +1,151 @@
 #include <bits/stdc++.h>
 using namespace std;
+
+void explainString()
+{
+    string s;                   // Declaration of an empty string
+    s = "abhishek";             // Assigning a string literal to s
+    cout << s.size() << endl;   // Returns the number of characters in the string (length)
+    cout << s.length() << endl; // Same as size(), returns length of string
+
+    // Accessing characters
+    for (int i = 0; i < s.size(); i++)
+    {                        // Iterating over the string
+        cout << s[i] << " "; // Access individual characters using the index operator []
+    }
+    cout << endl;
+
+    // String concatenation
+    string s2 = "Hello";
+    string s3 = " World!";
+    string s4 = s2 + s3; // Concatenate two strings using '+'
+    cout << s4 << endl;  // Output: Hello World!
+
+    // Append to a string
+    s2 += " Everyone";  // Append to s2
+    cout << s2 << endl; // Output: Hello Everyone
+
+    // Finding a substring within a string
+    size_t found = s4.find("World"); // Returns the index of the first occurrence of "World"
+    if (found != string::npos)
+    { // string::npos means not found
+        cout << "'World' found at index: " << found << endl;
+    }
+    else
+    {
+        cout << "'World' not found!" << endl;
+    }
+
+    // Substring extraction
+    string sub = s4.substr(6, 5); // Extracts a substring starting at index 6 with length 5
+    cout << sub << endl;          // Output: World
+
+    // String comparison
+    string s5 = "apple";
+    string s6 = "banana";
+    if (s5 == s6)
+    { // Compares two strings
+        cout << "Equal strings" << endl;
+    }
+    else
+    {
+        cout << "Strings are not equal" << endl; // Output: Strings are not equal
+    }
+
+    // String reversal
+    reverse(s.begin(), s.end()); // Reverses the entire string
+    cout << s << endl;           // Output: kehsihbA
+
+    // Convert string to uppercase and lowercase
+    for (int i = 0; i < s.size(); i++)
+    {
+        s[i] = toupper(s[i]); // Convert each character to uppercase
+    }
+    cout << s << endl; // Output: KEHSIHBA
+
+    for (int i = 0; i < s.size(); i++)
+    {
+        s[i] = tolower(s[i]); // Convert each character to lowercase
+    }
+    cout << s << endl; // Output: kehsihba
+
+    // Converting string to integer
+    string numStr = "12345";
+    int num = stoi(numStr);  // Converts the string to an integer
+    cout << num + 5 << endl; // Output: 12350
+
+    // Converting integer to string
+    int num2 = 54321;
+    string strNum = to_string(num2); // Converts the integer to a string
+    cout << strNum << endl;          // Output: 54321
+
+    // String length
+    cout << "Length of string s: " << s.length() << endl; // Size of the string (number of characters)
+
+    // Erase part of the string
+    s = "Hello Everyone!";
+    s.erase(5, 9);     // Erases 9 characters starting from index 5
+    cout << s << endl; // Output: Hello
+
+    // Insert at a particular position
+    s.insert(5, " Beautiful"); // Inserts " Beautiful" starting from index 5
+    cout << s << endl;         // Output: Hello Beautiful
+
+    // Find the last occurrence of a substring
+    string s7 = "this is a test string";
+    size_t lastFound = s7.rfind("test"); // Finds the last occurrence of "test"
+    if (lastFound != string::npos)
+    {
+        cout << "'test' found at index: " << lastFound << endl; // Output: 'test' found at index: 10
+    }
+
+    // Replace part of the string
+    s7.replace(5, 2, "was"); // Replaces 2 characters from index 5 with "was"
+    cout << s7 << endl;      // Output: this was a test string
+
+    // Iterating through a string using iterators
+    for (auto it = s.begin(); it != s.end(); ++it)
+    {
+        cout << *it << " "; // Prints each character of the string
+    }
+    cout << endl;
+
+    // String to char array (C-style string)
+    const char *cstr = s.c_str(); // Converts string to C-style string
+    cout << cstr << endl;         // Output: Hello Beautiful
+
+    // Tokenize a string (splitting by delimiter)
+    string s8 = "apple,banana,orange";
+    stringstream ss(s8); // Use stringstream to break the string into tokens
+    string token;
+    while (getline(ss, token, ','))
+    {
+        cout << token << " "; // Output: apple banana orange
+    }
+    cout << endl;
+
+    // Check if the string is empty
+    string emptyStr = "";
+    if (emptyStr.empty())
+    {
+        cout << "String is empty!" << endl; // Output: String is empty!
+    }
+    else
+    {
+        cout << "String is not empty!" << endl;
+    }
+
+    // String swap
+    string s9 = "first";
+    string s10 = "second";
+    s9.swap(s10);                                     // Swaps the contents of two strings
+    cout << "s9: " << s9 << ", s10: " << s10 << endl; // Output: s9: second, s10: first
+
+    // Clear the contents of a string
+    s.clear();                                                 // Clears the content of the string (s will be empty now)
+    cout << "After clearing, size of s: " << s.size() << endl; // Output: 0
+}
+
 void explainPair()
 {
     pair<int, int> p = {1, 3};

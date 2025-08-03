@@ -18,7 +18,9 @@ int main()
         // time complexity in map
         // functions like storing and fetching takes O(log N) where N is num of elements in map, in best, avg and worst case.
         // im map. any data structure can be a key, like pair<int,int> too
-        mpp[arr[i]]++;
+
+        mpp[arr[i]]++; // This increments the count of the element arr[i] in the map 'mpp'.
+        // If arr[i] is not already present in the map, it is added with an initial count of 1.
 
         // in unordered map, only single valued data structures can be a key
         // if unordered map is used here in place of map,
@@ -30,17 +32,20 @@ int main()
     }
 
     // iterate in the map
+    // this counts occurrences of all elements of array that are present in the map(mpp).
     for (auto it : mpp)
     {
         cout << it.first << "->" << it.second << endl;
     }
 
+    // q is the number of testcase
     int q;
     cin >> q;
     while (q--)
     {
         int number;
         cin >> number;
+        // this counts occurrence for specific numbers entered
         cout << mpp[number] << endl;
     }
     return 0;
