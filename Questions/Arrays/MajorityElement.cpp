@@ -35,14 +35,15 @@ int find_majority_element_better(vector<int> v)
 
     for (int i = 0; i < v.size(); i++)
     {
-        mpp[v[i]]++;
+        mpp[v[i]]++; // This increments the count of the element arr[i] in the map 'mpp'.
+        // If arr[i] is not already present in the map, it is added with an initial count of 1.
     }
 
-    for (auto it : mpp)
+    for (auto it : mpp) // iterating through all values in map
     {
-        if (it.second > (v.size() / 2))
+        if (it.second > (v.size() / 2)) // checking if count > n/2
         {
-            return it.first;
+            return it.first; // it.first is the number and it.second is count for that number
         }
     }
     return -1;
