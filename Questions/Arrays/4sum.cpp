@@ -39,7 +39,7 @@ vector<vector<int>> fourSum(vector<int> &nums, int target)
         for (int j = i + 1; j < n; j++)
         {
             set<long long> hashset;
-            for (int k = j + 1; j < n; j++)
+            for (int k = j + 1; k < n; j++)
             {
                 long long fourth = target - nums[i] - nums[j] - nums[k];
                 // this is to check if fourth is present in hashset

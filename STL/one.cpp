@@ -511,6 +511,276 @@ void explainExtra()
     // if u need all permutation, then start from the first sorted value, give the lowest value of arrival
 
     // int maxi = *max_element(a, a + n); gives value of max element from an array
+
+    // Get iterator to max element
+    auto it = max_element(a.begin(), a.end());
+
+    // Get index by subtracting the begin iterator
+    int index = distance(a.begin(), it);
+
+    cout << "Max element is at index: " << index << endl;
+    cout << "Max element value: " << *it << endl;
+
+    // Custom function for finding index of max element for reusability
+    int index_of_max(const vector<int> &a)
+    {
+        return distance(a.begin(), max_element(a.begin(), a.end()));
+    }
+}
+
+// bitset – Efficient Fixed‑Size Bit Manipulation
+void demoBitset()
+{
+    bitset<5> bs(18);                       // 18 in binary is 10010
+    cout << "Initial (bs): " << bs << endl; // Output: 10010
+
+    bs.set(0);                              // Set least significant bit
+    cout << "After set(0): " << bs << endl; // Output: 10011
+
+    bs.reset(1);                              // Clear bit at index 1
+    cout << "After reset(1): " << bs << endl; // Output: 10001
+
+    bs.flip(4);                              // Toggle bit at index 4 (most significant)
+    cout << "After flip(4): " << bs << endl; // Output: 00001
+
+    cout << "Count of set bits: " << bs.count() << endl; // Output: 1
+    cout << "Test bit 2: " << bs.test(2) << endl;        // Output: 0
+    cout << "Direct access bs[0]: " << bs[0] << endl;    // Output: 1
+    cout << "to_string(): " << bs.to_string() << endl;   // Output: "00001"
+    cout << "to_ulong(): " << bs.to_ulong() << endl;     // Output: 1
+}
+
+// unordered_map / unordered_multiset – Fast Hash-Based Containers
+void demoUnordered()
+{
+    unordered_map<int, int> um;
+    um[1] = 10;        // Insert key=1, value=10
+    um.emplace(2, 20); // Insert key=2, value=20
+    cout << "um[1] = " << um[1] << ", um[2] = " << um[2] << endl;
+    // Output: um[1] = 10, um[2] = 20
+
+    unordered_multiset<int> ums;
+    ums.insert(1); // Insert duplicate value
+    ums.insert(1);
+    cout << "Count of 1 in ums: " << ums.count(1) << endl; // Output: 2
+}
+
+// tuple – Group More Than Two Values
+void demoTuple()
+{
+    tuple<int, string, double> t = {1, "DSA", 3.14};
+    cout << "Tuple contents: "
+         << get<0>(t) << ", " << get<1>(t) << ", " << get<2>(t) << endl;
+    // Output: 1, DSA, 3.14
+}
+
+// set / map with Custom Comparator
+struct Desc
+{
+    bool operator()(int a, int b) const { return a > b; }
+};
+
+void demoCustomSet()
+{
+    set<int, Desc> s = {3, 1, 4};
+    cout << "Elements in descending order: ";
+    for (int x : s)
+        cout << x << " "; // Output: 4 3 1
+    cout << endl;
+}
+
+// lower_bound / upper_bound on vector
+void demoBoundOps()
+{
+    vector<int> v = {1, 3, 3, 5, 7};
+    auto lb = lower_bound(v.begin(), v.end(), 3);
+    auto ub = upper_bound(v.begin(), v.end(), 3);
+    cout << "lower_bound index: " << (lb - v.begin())
+         << ", upper_bound index: " << (ub - v.begin()) << endl;
+    // Output: lower_bound index: 1, upper_bound index: 3
+}
+
+// binary_search Algorithm
+void demoBinarySearch()
+{
+    vector<int> v = {1, 2, 4, 8};
+    bool found = binary_search(v.begin(), v.end(), 4);
+    cout << (found ? "Found" : "Not Found") << endl; // Output: Found
+}
+
+// accumulate from <numeric>
+void demoAccumulate()
+{
+    vector<int> v = {1, 2, 3, 4};
+    int sum = accumulate(v.begin(), v.end(), 0); // Start sum from 0
+    cout << "Sum of vector = " << sum << endl;   // Output: Sum of vector = 10
+}
+
+// iota, fill, generate
+void demoInitFuncs()
+{
+    vector<int> v(5);
+    iota(v.begin(), v.end(), 1);        // Fill [1,2,3,4,5]
+    fill(v.begin(), v.begin() + 2, 10); // Now [10,10,3,4,5]
+    generate(v.begin(), v.end(), [n = 0]() mutable
+             { return n++; });
+    // Now [0,1,2,3,4]
+    cout << "After init: ";
+    for (int x : v)
+        cout << x << " ";
+    cout << endl; // Output: 0 1 2 3 4
+}
+
+// Lambda Functions (e.g., for Sorting)
+void demoLambda()
+{
+    vector<int> v = {1, 4, 2, 5};
+    sort(v.begin(), v.end(), [](int a, int b)
+         { return a > b; }); // Sort descending
+    cout << "Sorted descending: ";
+    for (int x : v)
+        cout << x << " ";
+    cout << endl; // Output: 5 4 2 1
+}
+
+// Disjoint Set Union (DSU) / Union Find
+struct DSU
+{
+    vector<int> parent, rank;
+    DSU(int n) : parent(n), rank(n, 0)
+    {
+        iota(parent.begin(), parent.end(), 0); // Initialize parent[i] = i
+    }
+    int find(int x)
+    {
+        return parent[x] == x ? x : parent[x] = find(parent[x]); // Path compression
+    }
+    void unite(int a, int b)
+    {
+        a = find(a);
+        b = find(b);
+        if (a != b)
+        {
+            if (rank[a] < rank[b])
+                swap(a, b);
+            parent[b] = a;
+            if (rank[a] == rank[b])
+                rank[a]++;
+        }
+    }
+};
+
+void demoDSU()
+{
+    DSU dsu(5);
+    dsu.unite(0, 1);
+    dsu.unite(3, 4);
+    cout << "0 and 1 same component? " << (dsu.find(0) == dsu.find(1)) << endl;
+    // Output: 0 and 1 same component? 1
+}
+
+// Fenwick Tree (Binary Indexed Tree)
+struct FenwickTree
+{
+    int n;
+    vector<int> fenw;
+    FenwickTree(int n) : n(n), fenw(n + 1, 0) {}
+
+    void update(int i, int delta)
+    {
+        for (; i <= n; i += i & -i)
+            fenw[i] += delta;
+    }
+
+    int query(int i)
+    {
+        int s = 0;
+        for (; i > 0; i -= i & -i)
+            s += fenw[i];
+        return s;
+    }
+};
+
+void demoFenwick()
+{
+    FenwickTree ft(5);
+    ft.update(1, 10);                                      // fenw[1..] += 10
+    ft.update(3, 5);                                       // fenw[3..] += 5
+    cout << "Sum up to index 3 = " << ft.query(3) << endl; // Output: 15
+}
+
+// Trie (Prefix Tree)
+struct Trie
+{
+    array<Trie *, 26> child;
+    bool end = false;
+
+    Trie() { child.fill(nullptr); }
+
+    void insert(const string &s)
+    {
+        Trie *node = this;
+        for (char c : s)
+        {
+            int idx = c - 'a';
+            if (!node->child[idx])
+                node->child[idx] = new Trie();
+            node = node->child[idx];
+        }
+        node->end = true;
+    }
+
+    bool search(const string &s) const
+    {
+        const Trie *node = this;
+        for (char c : s)
+        {
+            node = node->child[c - 'a'];
+            if (!node)
+                return false;
+        }
+        return node->end;
+    }
+};
+
+void demoTrie()
+{
+    Trie root;
+    root.insert("hello");
+    cout << "hello in trie? " << root.search("hello") << endl; // Output: 1
+    cout << "world in trie? " << root.search("world") << endl; // Output: 0
+}
+
+// Graph Representation + BFS
+void demoGraph()
+{
+    int n = 5;
+    vector<vector<int>> adj(n);
+    adj[0] = {1, 2};
+    adj[1] = {0, 3};
+    adj[2] = {0, 4};
+
+    vector<bool> visited(n, false);
+    queue<int> q;
+    visited[0] = true;
+    q.push(0);
+
+    cout << "BFS order: ";
+    while (!q.empty())
+    {
+        int u = q.front();
+        q.pop();
+        cout << u << " ";
+        for (int v : adj[u])
+        {
+            if (!visited[v])
+            {
+                visited[v] = true;
+                q.push(v);
+            }
+        }
+    }
+    cout << endl; // Possible Output: BFS order: 0 1 2 3 4
 }
 
 int main()

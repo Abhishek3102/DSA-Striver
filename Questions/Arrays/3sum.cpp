@@ -71,21 +71,28 @@ vector<vector<int>> triplet(int n, vector<int> &num)
             int sum = num[i] + num[j] + num[k];
             if (sum < 0)
             {
-                j++;
+                j++; // when sum is less than zero we move towards right side of array
             }
             else if (sum > 0)
             {
-                k--;
+                k--; // when sum is greater than zero we move towards left side of array
             }
             else
             {
+                // when triplet is found, store them in temp vector and then push to ans vector
                 vector<int> temp = {num[i], num[j], num[k]};
                 ans.push_back(temp);
-                j++;
-                k--;
-                while (j < k && num[j] == num[j - 1])
+
+                // Find other valid triplets with the same i but different values for j and k.
+                j++; // Moves the left pointer forward.
+                     // Skips over the current num[j] so the next iteration uses a different second element.
+
+                k--; // Moves the right pointer backward.
+                     // Skips over the current num[k] to use a different third element.
+
+                while (j < k && num[j] == num[j - 1]) // skip duplicates for j
                     j++;
-                while (j < k && num[k] == num[k + 1])
+                while (j < k && num[k] == num[k + 1]) // skip duplicates for k
                     k--;
             }
         }
