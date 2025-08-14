@@ -783,6 +783,25 @@ void demoGraph()
     cout << endl; // Possible Output: BFS order: 0 1 2 3 4
 }
 
+/*
+
+// ✅ bitset - Efficient fixed-size bit manipulation
+// ✅ unordered_multiset / unordered_map - For dealing with hash-based structures with duplicates
+// ✅ tuple - More than 2 values together
+// ✅ set / map custom comparators - When sorting order needs to be customized
+// ✅ lower_bound / upper_bound on vectors - For binary search in sorted vectors
+// ✅ binary_search algorithm - O(log n) search in sorted containers
+// ✅ accumulate from <numeric> - For sum of container
+// ✅ iota, fill, generate - Fast initialization
+// ✅ lambda functions - Useful in sorting with custom conditions or quick comparisons
+// ✅ Disjoint Set Union (DSU) / Union Find - Critical for graph problems (Kruskal’s, Connected Components)
+// ✅ Segment Tree / Fenwick Tree - Advanced data structures for range queries
+// ✅ Trie - For string-related problems (prefix search, autocomplete)
+// ✅ Graph representations - Adjacency list, BFS, DFS, etc.
+
+
+*/
+
 int main()
 {
     explainList();
