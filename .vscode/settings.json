@@ -61,6 +61,7 @@
     ".env": "python",
     "ostream": "cpp",
     "iostream": "cpp",
-    "random": "cpp"
+    "random": "cpp",
+    "unordered_set": "cpp"
   }
 }
