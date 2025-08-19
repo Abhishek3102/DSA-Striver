@@ -16,24 +16,28 @@ int find_element(vector<int> arr, int target)
         if (arr[low] <= arr[mid])
         {
 
+            // Target is in the left half
             if (arr[low] <= target && target <= arr[mid])
             {
-                high = mid - 1; // Target is in the left half
+                high = mid - 1; // trim the right half, i.e., eliminate right half
             }
+            // Target is in the right half
             else
             {
-                low = mid + 1; // Target is in the right half
+                low = mid + 1; // trim the left half, i.e., eliminate left half
             }
         }
         // Right sorted part
         else
         {
+            // Target is in the right half
             if (arr[mid] <= target && target <= arr[high])
             {
-                low = mid + 1; // Target is in the right half
+                low = mid + 1; // trim the left half, i.e., eliminate the left half
             }
+            // Target is in the left half
             else
-                high = mid - 1; // Target is in the left half
+                high = mid - 1; // trim the right half, i.e., eliminate the right half
         }
     }
     return -1; // Return -1 if target is not found

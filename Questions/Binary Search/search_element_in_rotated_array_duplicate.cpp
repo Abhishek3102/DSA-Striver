@@ -15,6 +15,10 @@ bool searchInRotatedArrayII(vector<int> arr, int target)
 
         if (arr[low] == arr[mid] && arr[mid] == arr[high])
         {
+            // ⚠️ Ambiguity due to duplicates:
+            // When arr[low], arr[mid], and arr[high] are equal,
+            // we can't determine which side is sorted — both halves may appear the same.
+            // So, we shrink the search space from both ends to skip duplicates.
             low++;
             high--;
             continue;
