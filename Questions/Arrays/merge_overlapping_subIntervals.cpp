@@ -12,12 +12,18 @@ vector<vector<int>> mergeOverlappingIntervals(vector<vector<int>> &arr)
     vector<vector<int>> ans;
     for (int i = 0; i < n; i++)
     {
-        int start = arr[i][0];
-        int end = arr[i][1];
+        int start = arr[i][0]; // current interval's start
+        int end = arr[i][1];   // current interval's end
+
+        // If ans is not empty and current interval is completely inside the last interval in ans
+        // → it means it was already merged earlier, so skip it
         if (!ans.empty() && end <= ans.back()[1])
             continue; // if the current interval is completely inside the last interval in ans, skip it
+
+        // Step 3: Look ahead and merge any overlapping intervals with the current one
         for (int j = i + 1; j < n; j++)
         {
+            // If the next interval starts before or at the current `end`, it overlaps
             if (arr[j][0] <= end)
             {
                 end = max(end, arr[j][1]); // merge the intervals
