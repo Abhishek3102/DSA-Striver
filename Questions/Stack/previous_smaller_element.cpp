@@ -1,14 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> findNSEBrute(vector<int> arr)
+vector<int> findPreviousSmallerElement(vector<int> arr)
 {
     int n = arr.size();
     vector<int> nse(n, -1);
-
     for (int i = 0; i < n; i++)
     {
-        for (int j = i + 1; j < n; j++)
+        for (int j = i - 1; j >= 0; j--)
         {
             if (arr[j] < arr[i])
             {
@@ -20,13 +19,13 @@ vector<int> findNSEBrute(vector<int> arr)
     return nse;
 }
 
-vector<int> findNSEOptimal(vector<int> arr)
+// optimal approach
+vector<int> findPSEOptimal(vector<int> arr)
 {
     int n = arr.size();
     vector<int> nse(n, -1);
     stack<int> st;
-
-    for (int i = n - 1; i >= 0; i--)
+    for (int i = 0; i < n; i++)
     {
         while (!st.empty() && st.top() >= arr[i])
         {
@@ -41,14 +40,16 @@ vector<int> findNSEOptimal(vector<int> arr)
 
 int main()
 {
-    vector<int> arr = {4, 5, 2, 10, 8};
-    vector<int> nse_optimal = findNSEOptimal(arr);
-    cout << "Optimal NSE: ";
-    for (int i = 0; i < nse_optimal.size(); i++)
-    {
-        cout << nse_optimal[i] << " ";
-    }
-    cout << endl;
+    std::vector<int> arr = {4, 5, 2, 10, 8};
+    std::vector<int> result = findPSEOptimal(arr);
+
+    std::cout << "Input Array: ";
+    for (int x : arr)
+        std::cout << x << " ";
+    std::cout << "\nNSE to Left (Brute Force): ";
+    for (int x : result)
+        std::cout << x << " ";
+    std::cout << "\n";
 
     return 0;
 }
