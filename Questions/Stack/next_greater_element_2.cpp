@@ -1,18 +1,18 @@
 /*
   NEXT GREATER ELEMENT - II (CIRCULAR ARRAY)
-  
+
   This code finds the next greater element in a circular array.
-  
+
   WHAT IT DOES:
   - Same as NGE-I but array is treated as circular (wraps around)
   - For each element, find first element greater than it in circular manner
   - First searches forward, then wraps around to beginning if not found
   - Uses stack-based approach with 2*n iterations for circular traversal
-  
+
   INPUT:
   - Array of integers treated as circular
   - Example: [2, 10, 12, 1, 11]
-  
+
   OUTPUT:
   - Array where each element is replaced by its next greater element (circular)
   - Example output: [10, 12, -1, 11, 12]

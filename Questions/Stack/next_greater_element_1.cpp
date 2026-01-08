@@ -1,18 +1,18 @@
 /*
   NEXT GREATER ELEMENT - I
-  
+
   This code finds the next greater element for each element in an array.
-  
+
   WHAT IT DOES:
   - For each element, find the first element to its right that is greater than it
   - If no greater element exists on the right, return -1
   - Uses stack-based approach for optimal O(n) solution
   - Includes both brute force O(n^2) and optimal O(n) approaches
-  
+
   INPUT:
   - Array of integers
   - Example: [6, 0, 8, 1, 3]
-  
+
   OUTPUT:
   - Array where each element is replaced by its next greater element
   - Example output: [8, 8, -1, 3, -1]

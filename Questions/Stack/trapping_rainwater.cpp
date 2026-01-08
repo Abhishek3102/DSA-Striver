@@ -1,18 +1,18 @@
 /*
   TRAPPING RAINWATER
-  
+
   This code calculates the amount of water that can be trapped between elevation bars.
-  
+
   WHAT IT DOES:
   - Given elevation heights, calculates water trapped after rainfall
   - Water trapped at position i = min(maxLeft, maxRight) - height[i]
   - Uses two-pointer approach moving from both ends
   - Tracks leftMax and rightMax simultaneously for O(1) space complexity
-  
+
   INPUT:
   - Array of integers representing elevation heights
   - Example: [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]
-  
+
   OUTPUT:
   - Single integer: total units of water that can be trapped
   - Example output: 6 units

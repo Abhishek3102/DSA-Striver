@@ -1,20 +1,20 @@
 /*
   LRU (LEAST RECENTLY USED) CACHE IMPLEMENTATION
-  
+
   This code implements an LRU cache data structure.
-  
+
   WHAT IT DOES:
   - Maintains a cache with fixed capacity using doubly-linked list and hashmap
   - When capacity is exceeded, least recently used item is evicted
   - Supports get(key) and put(key, value) operations in O(1) time
   - Doubly-linked list maintains order (most recently used at head, least at tail)
   - Hashmap stores references to linked list nodes for fast access
-  
+
   INPUT:
   - Capacity of cache (max items it can hold)
   - Series of get(key) and put(key, value) operations
   - Example: capacity=2, then put(1,1), get(1), put(2,2), get(2), put(3,3)
-  
+
   OUTPUT:
   - For get operations: returns the value if key exists, -1 otherwise
   - Cache state after each operation follows LRU eviction policy

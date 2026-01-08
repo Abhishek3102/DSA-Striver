@@ -1,19 +1,19 @@
 /*
   REMOVE K DIGITS - SMALLEST NUMBER
-  
+
   This code finds the smallest number possible after removing exactly k digits from a number.
-  
+
   WHAT IT DOES:
   - Takes a string representation of a number and removes k digits
   - Removes digits greedily to get the lexicographically smallest result
   - Uses a stack to track which digits to keep/remove
   - A digit is removed if the next digit is smaller and k removals are still available
-  
+
   INPUT:
   - String representing a number
   - Integer k (number of digits to remove)
   - Example: "1432219", k=3
-  
+
   OUTPUT:
   - String representing the smallest number after removing k digits
   - Example output: "1219" (removed 4, 3, 2)

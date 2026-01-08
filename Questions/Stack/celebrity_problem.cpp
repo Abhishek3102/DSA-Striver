@@ -1,19 +1,19 @@
 /*
   CELEBRITY PROBLEM
-  
+
   This code finds the celebrity in a group of n people.
-  
+
   WHAT IT DOES:
   - A celebrity is someone who is known by everyone but doesn't know anyone
   - Uses a matrix where mat[i][j] = 1 means i knows j, 0 means i doesn't know j
   - Finds the position/index of the celebrity
   - Includes both brute force and optimal two-pointer approaches
-  
+
   INPUT:
   - 2D matrix (n x n) where mat[i][j] = 1 (knows) or 0 (doesn't know)
   - Matrix size n
   - Example: Celebrity is known by all but knows none
-  
+
   OUTPUT:
   - Index of the celebrity (0 to n-1)
   - Returns -1 if no celebrity exists
