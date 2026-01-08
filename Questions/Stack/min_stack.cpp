@@ -1,3 +1,25 @@
+/*
+  MINIMUM STACK (MIN-STACK) IMPLEMENTATION
+  
+  This code implements a stack data structure that can retrieve the minimum element in O(1) time.
+  
+  WHAT IT DOES:
+  - Provides push(), pop(), top(), and getMin() operations
+  - Each element stores both its value and the minimum value up to that point
+  - Uses pair<value, minimum> to track current and running minimum
+  - All operations run in O(1) time and O(n) space
+  
+  INPUT:
+  - Series of push and getMin operations
+  - Example: push(5), push(2), push(3), getMin(), push(1), getMin()
+  
+  OUTPUT:
+  - Top element when top() is called
+  - Minimum element when getMin() is called
+  - Example: After push(5), push(2), push(3): getMin() returns 2
+  - After push(1): getMin() returns 1
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 

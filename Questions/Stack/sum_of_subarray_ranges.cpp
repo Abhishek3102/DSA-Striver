@@ -1,3 +1,25 @@
+/*
+  SUM OF SUBARRAY RANGES
+  
+  This code calculates the sum of ranges (max - min) for all subarrays.
+  
+  WHAT IT DOES:
+  - For each subarray, find the maximum and minimum elements
+  - Calculate range as (max - min) for each subarray
+  - Sum all these ranges
+  - Uses stack to find Previous/Next Greater and Previous/Next Smaller elements
+  - Optimal approach uses contribution of each element to total sum
+  
+  INPUT:
+  - Array of integers
+  - Example: [1, 2, 3]
+  
+  OUTPUT:
+  - Single integer: sum of ranges of all subarrays
+  - Example: Subarrays [1]=0, [2]=0, [3]=0, [1,2]=1, [2,3]=1, [1,2,3]=2, Total=4
+  - Brute force: iterate all subarrays and sum their ranges
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 

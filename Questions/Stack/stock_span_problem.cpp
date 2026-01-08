@@ -1,3 +1,24 @@
+/*
+  STOCK SPAN PROBLEM
+  
+  This code finds the span of stock prices - consecutive days where price <= current price.
+  
+  WHAT IT DOES:
+  - Span is the maximum number of consecutive days just before current day where price <= current price
+  - For each day, calculates how many consecutive days back have price <= today's price
+  - Uses stack to efficiently find previous greater price positions
+  - Optimal solution: O(n) time for n queries
+  
+  INPUT:
+  - Stock prices given one by one (as stream input)
+  - Example: prices = [100, 80, 60, 70, 60, 75, 85]
+  
+  OUTPUT:
+  - Span for each price when queried
+  - Example output: [1, 1, 1, 2, 1, 4, 6]
+  - Day 100: span=1, day 80: span=1, day 60: span=1, day 70: span=2 (70 and 60), etc.
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 

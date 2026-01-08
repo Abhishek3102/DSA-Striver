@@ -1,7 +1,23 @@
-// in this problem, traverse all elements of array and then return the element which is the next greater element for each of the element.
-// if element has greater elements ahead in the array then return that, if not than return -1 for that element.
-
-// eg : [ 6, 0, 8, 1, 3] ans = [ 8, 8, -1, 3, -1]
+/*
+  NEXT GREATER ELEMENT - I
+  
+  This code finds the next greater element for each element in an array.
+  
+  WHAT IT DOES:
+  - For each element, find the first element to its right that is greater than it
+  - If no greater element exists on the right, return -1
+  - Uses stack-based approach for optimal O(n) solution
+  - Includes both brute force O(n^2) and optimal O(n) approaches
+  
+  INPUT:
+  - Array of integers
+  - Example: [6, 0, 8, 1, 3]
+  
+  OUTPUT:
+  - Array where each element is replaced by its next greater element
+  - Example output: [8, 8, -1, 3, -1]
+  - 6 → 8 (next greater to right), 0 → 8, 8 → -1 (no greater on right), 1 → 3, 3 → -1
+*/
 
 #include <bits/stdc++.h>
 using namespace std;

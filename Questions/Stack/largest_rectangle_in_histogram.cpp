@@ -1,3 +1,23 @@
+/*
+  LARGEST RECTANGLE IN HISTOGRAM
+  
+  This code finds the area of the largest rectangle that can be formed in a histogram.
+  
+  WHAT IT DOES:
+  - Given heights of bars in a histogram, find the largest rectangular area
+  - Uses stack to find next smaller element (NSE) and previous smaller element (PSE)
+  - For each bar, calculates area with that bar as the shortest in the range
+  - Maximum of all such areas is the answer
+  
+  INPUT:
+  - Array of integers representing heights of histogram bars
+  - Example: {2, 1, 5, 6, 2, 3} (heights of bars)
+  
+  OUTPUT:
+  - Single integer representing the maximum rectangular area
+  - Example output: 10 (rectangle of height 2 and width 5)
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 

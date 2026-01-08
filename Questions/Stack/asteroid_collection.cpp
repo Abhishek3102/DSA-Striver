@@ -1,3 +1,23 @@
+/*
+  ASTEROID COLLISION PROBLEM
+  
+  This code simulates the collision of asteroids moving on a line.
+  
+  WHAT IT DOES:
+  - Asteroids are represented by integers (positive = moving right, negative = moving left)
+  - When asteroids collide, the smaller one explodes and disappears
+  - If both are same size, both disappear
+  - A positive asteroid followed by a negative asteroid (with positive smaller) causes collision
+  
+  INPUT:
+  - Array of integers representing asteroids with their directions
+  - Example: {4, 7, 1, 1, 2, -3, -7, 17, 15, -18, -19}
+  
+  OUTPUT:
+  - List of surviving asteroids after all collisions
+  - Example: {-19}
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 

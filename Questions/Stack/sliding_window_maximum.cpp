@@ -1,3 +1,25 @@
+/*
+  SLIDING WINDOW MAXIMUM
+  
+  This code finds the maximum element in every sliding window of size k in an array.
+  
+  WHAT IT DOES:
+  - Slides a window of size k through an array from left to right
+  - For each window position, finds and returns the maximum element
+  - Uses deque (double-ended queue) to maintain indices in decreasing order of values
+  - Optimal solution runs in O(n) time and O(k) space
+  
+  INPUT:
+  - Array of integers
+  - Integer k (window size)
+  - Example: [1, 3, -1, -3, 5, 3, 6, 7], k=3
+  
+  OUTPUT:
+  - Array containing the maximum of each window
+  - Example output: [3, 3, 5, 5, 6, 7]
+  - Window [1,3,-1]→3, [3,-1,-3]→3, [-1,-3,5]→5, [-3,5,3]→5, [5,3,6]→6, [3,6,7]→7
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 
