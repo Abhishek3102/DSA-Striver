@@ -11,11 +11,26 @@ int f(int n, vector<int> &dp)
     return dp[n] = f(n - 1, dp) + f(n - 2, dp);
 }
 
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     vector<int> dp(n + 1, -1);
+//     cout << f(n, dp);
+//     return 0;
+// }
+
 int main()
 {
     int n;
     cin >> n;
-    vector<int> dp(n + 1, -1);
-    cout << f(n, dp);
+    int prev2 = 0, prev = 1;
+    for (int i = 2; i <= n; i++)
+    {
+        int curr = prev + prev2;
+        prev2 = prev;
+        prev = curr;
+    }
+    cout << prev;
     return 0;
 }
