@@ -39,9 +39,9 @@ int maxSubarrayBetter(int arr[], int n, int num)
 
 long long maxSubarraySumOptimal(int arr[], int n)
 {
-    long long sum = 0;
+    long long sum = 0; // Tracks the running sum of the current subarray.
     long long maxi = LONG_LONG_MIN;
-    int start = 0, ansStart = -1, ansEnd = -1;
+    int start = 0, ansStart = -1, ansEnd = -1; // Track the indices to identify the actual subarray
     for (int i = 0; i < n; i++)
     {
         if (sum == 0)
