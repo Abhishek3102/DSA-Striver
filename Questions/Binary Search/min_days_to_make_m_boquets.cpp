@@ -82,8 +82,10 @@ int bs(vector<int> arr, int m, int k)
 
     int ans = high; // this ans variable can be avoided and answer will be returned by low.
 
+    // if no. of flowers given is less than product of no. of flowers required in group and how many groups are required
     long long productNumFlowAndAdjacentFlow = m * 1LL * k * 1LL;
 
+    // if no. of flowers given is less than product of no. of flowers required in group and how many groups are required, then return -1 coz ans not possible
     if (n < productNumFlowAndAdjacentFlow)
         return -1;
 

@@ -30,7 +30,7 @@ int findSqrtBinarySearch(int n)
     int ans = 1;
     while (low <= high)
     {
-        int mid = low + (high - low) / 2; // Prevents overflow compared to (low + high) / 2
+        long long mid = low + (high - low) / 2;
         if ((mid * mid) <= n)
         {
             ans = mid;     // mid is a possible answer
