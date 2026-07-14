@@ -24,6 +24,8 @@ int main()
 {
     int n;
     cin >> n;
+
+    // this is done bcoz the tabulation approach(bottom up) was using sc : O(N) so to eliminate it
     int prev2 = 0, prev = 1;
     for (int i = 2; i <= n; i++)
     {
