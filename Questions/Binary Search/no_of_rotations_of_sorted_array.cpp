@@ -73,3 +73,19 @@ int main()
 
     return 0;
 }
+
+/*
+
+Summary
+
+For an ascending sorted array rotated by some amount:
+
+Quantity	Formula
+Index of minimum element	minIndex
+Right rotations	minIndex
+Left rotations	(n - minIndex) % n
+
+These formulas are standard and hold under the assumptions above. If the array isn't originally sorted, or if duplicates require special handling,
+the relationship may not apply directly.
+
+*/

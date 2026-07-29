@@ -22,7 +22,7 @@ int findSqrt(int n)
 // here binary search is used bcoz, binary search is used when answer can be found upto a certain point in an array and after that answer will surely not be found
 // for eg, consider 28. take low = 1 and high = 28, in first check mid will come as 14 which is greater than 28 according to condition (i * i <= n). so eliminate whole right side starting from 28.
 // then consider low = 1 and high = 13, then mid will come as 7, which is also greater than 28. so again eliminate whole right side.
-// then, low = 1, high = 6. so mid will be 3 which is less than 28, 3 * 3 is not less than 28. so update answer as 3, coz this can be one of the answer. so look for bigger answer and if not found then 3 will be the ans. now low = 4 and high = 6, so mid will be 5.
+// then, low = 1, high = 6. so mid will be 3 which is less than 28, 3 * 3 is less than 28. so update answer as 3, coz this can be one of the answer. so look for bigger answer and if not found then 3 will be the ans. now low = 4 and high = 6, so mid will be 5.
 // 5 is also the ans, but we will update low to 6 and check for it as well which will be false. so the final ans is 5.
 int findSqrtBinarySearch(int n)
 {
