@@ -58,6 +58,37 @@ int findMaxLength(string s, int k)
     return maxLength;
 }
 
+// optimal
+int longestValidOptimal(string s, int k)
+{
+    int l = 0;
+    int ans = 0;
+    int distinct = 0;
+    int freq[256] = {};
+
+    for (int r = 0; r < s.size(); r++)
+    {
+        if (freq[s[r]] == 0)
+            distinct++;
+
+        freq[s[r]]++;
+
+        while (distinct > k)
+        {
+            freq[s[l]]--;
+
+            if (freq[s[l]] == 0)
+                distinct--;
+
+            l++;
+        }
+
+        ans = max(ans, r - l + 1);
+    }
+
+    return ans;
+}
+
 // int main(){
 //     vector<char> arr = {'a', 'b', 'c', 'a', 'b', 'b', 'c'};
 //     int k = 2;
