@@ -127,20 +127,87 @@ int main()
 int maximumSumNotAdjacentSO(vector<int> &arr)
 {
     int n = arr.size();
+
+    // Edge case: if the array is empty, maximum sum is 0.
+    if (n == 0)
+        return 0;
+
+    /*
+        prev = maximum sum we can get from the previous index (i - 1)
+
+        prev2 = maximum sum we can get from two indices back (i - 2)
+
+        Initially:
+
+        For i = 0:
+            There is no element before index 0.
+            So the answer for i - 2 is considered 0.
+
+            prev = arr[0]
+            prev2 = 0
+    */
+
     int prev = arr[0];
     int prev2 = 0;
 
-    for (int i = 0; i < n; i++)
+    // Start from index 1 because index 0 is already handled above.
+    for (int i = 1; i < n; i++)
     {
-        int take = arr[i];
+        /*
+            CASE 1: TAKE the current element
 
-        if (i > 1)
-            take += prev2;
-        int notTake = 0 + prev;
+            If we take arr[i], we CANNOT take arr[i - 1]
+            because the elements must be non-adjacent.
 
+            Therefore, we add arr[i] to the best answer
+            from two positions back.
+
+                    current
+                       ↓
+            ...  i-2   i-1   i
+                  ↑
+                prev2
+
+            take = arr[i] + prev2
+        */
+        int take = arr[i] + prev2;
+
+        /*
+            CASE 2: DON'T TAKE the current element
+
+            If we don't take arr[i], then we can simply keep
+            the best answer we already had up to i - 1.
+
+            prev = answer for the previous element
+        */
+        int notTake = prev;
+
+        /*
+            We have two choices:
+
+            1. Take current element
+            2. Don't take current element
+
+            Choose whichever gives the larger sum.
+        */
         int curi = max(take, notTake);
+
+        /*
+            Move our variables forward.
+
+            The current answer becomes the "previous" answer
+            for the next iteration.
+
+            The old prev becomes prev2 because for the next
+            index, it will represent the answer from i - 2.
+        */
         prev2 = prev;
         prev = curi;
     }
+
+    /*
+        prev now contains the maximum sum possible
+        for the entire array.
+    */
     return prev;
 }
